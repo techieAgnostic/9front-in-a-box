@@ -12,9 +12,11 @@
       nixpkgs,
       flake-utils,
     }:
-    flake-utils.lib.simpleFlake {
+    (flake-utils.lib.simpleFlake {
       inherit self nixpkgs;
       name = "vm9";
       overlay = ./overlay.nix;
+    }) // {
+      overlays.default = import ./overlay.nix;
     };
 }
